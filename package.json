@@ -1,0 +1,18 @@
+{
+  "name": "blogsite",
+  "version": "1.0.0",
+  "description": "This is a personal blog site where I will create posts about the following topics:   - computer science - turkish language",
+  "main": "index.js",
+  "scripts": {
+    "build": "node src/build.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fs-extra": "^11.3.4",
+    "js-yaml": "^4.1.1",
+    "marked": "^17.0.4"
+  }
+}

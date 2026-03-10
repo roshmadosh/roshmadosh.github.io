@@ -5,7 +5,7 @@ const yaml = require('js-yaml');
 
 const POSTS_DIR = path.join(__dirname, '../posts');
 const SRC_DIR = path.join(__dirname, '../src');
-const PUBLIC_DIR = path.join(__dirname, '../public');
+const PUBLIC_DIR = path.join(__dirname, '../docs');
 
 // Setup public directory
 fs.emptyDirSync(PUBLIC_DIR);
@@ -28,7 +28,7 @@ function generateHTML(title, content, meta = {}) {
 </head>
 <body>
     <header>
-        <h1><a href="index.html">My Personal Blog</a></h1>
+        <h1><a href="index.html">Hiroshi's Blog</a></h1>
     </header>
     <main>
         <article>
@@ -91,13 +91,13 @@ const indexHtml = `<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Personal Blog</title>
+    <title>Hiroshi's Blog</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>My Personal Blog</h1>
-        <p>A blog about computer science and turkish language.</p>
+        <h1>Hiroshi's Blog</h1>
+        <p>This is where I write about stuff.</p>
     </header>
     <main>
         <ul class="post-list">
@@ -109,4 +109,3 @@ const indexHtml = `<!DOCTYPE html>
 
 fs.writeFileSync(path.join(PUBLIC_DIR, 'index.html'), indexHtml);
 
-console.log('Build complete!');

@@ -134,7 +134,7 @@ const indexHtml = `<!DOCTYPE html>
     </header>
     <main>
         <section class="intro">
-            <p>Welcome to my personal corner of the web. I write about stuff I learned on random topics, but mostly related to CS and Turkish language. </p>
+            <p>An ode to the ol' personal blog site. No socials, just random crap I feel like writing about.</p>
         </section>
         
         <a href="blog.html" class="stuff-i-wrote-btn">

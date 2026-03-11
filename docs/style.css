@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
 
 :root {
-  --ts-bg: #4B3D35;
+  --ts-bg: #36454f;
   --ts-text: #E9DEC2;
   --ts-accent: #F27234;
   --ts-highlight: #F14936;
@@ -30,6 +30,26 @@ a:hover {
 
 h1, h2, h3 {
   color: var(--ts-accent);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  border-bottom: 1px dotted var(--ts-muted);
+  padding-bottom: 20px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.8em;
+}
+
+header nav a {
+  font-weight: bold;
+  font-size: 1.1em;
+  text-transform: lowercase;
 }
 
 .post-title {

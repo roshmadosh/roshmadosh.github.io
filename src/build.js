@@ -35,6 +35,9 @@ function generateHTML(title, content, meta = {}) {
 <body>
     <header>
         <h1><a href="index.html">Hiroshi's Blog</a></h1>
+        <nav>
+            <a href="blog.html">posts</a>
+        </nav>
     </header>
     <main>
         <article>
@@ -106,9 +109,12 @@ const blogHtml = `<!DOCTYPE html>
 <body>
     <header>
         <h1><a href="index.html">Hiroshi's Blog</a></h1>
-        <p>This is where I write about stuff.</p>
+        <nav>
+            <a href="blog.html">posts</a>
+        </nav>
     </header>
     <main>
+        <p>This is where I write about stuff.</p>
         <h2>Blog Posts</h2>
         <ul class="post-list">
             ${postListHtml}
@@ -130,7 +136,10 @@ const indexHtml = `<!DOCTYPE html>
 </head>
 <body>
     <header>
-        <h1>Hiroshi's Blog</h1>
+        <h1><a href="index.html">Hiroshi's Blog</a></h1>
+        <nav>
+            <a href="blog.html">posts</a>
+        </nav>
     </header>
     <main>
         <section class="intro">

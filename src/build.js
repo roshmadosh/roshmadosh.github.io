@@ -7,6 +7,9 @@ const POSTS_DIR = path.join(__dirname, '../posts');
 const SRC_DIR = path.join(__dirname, '../src');
 const PUBLIC_DIR = path.join(__dirname, '../docs');
 
+const CLOCK_ICON = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>`;
+const TAG_ICON = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>`;
+
 // Setup public directory
 fs.emptyDirSync(PUBLIC_DIR);
 fs.copySync(path.join(SRC_DIR, 'style.css'), path.join(PUBLIC_DIR, 'style.css'));
@@ -16,7 +19,10 @@ const posts = [];
 function generateHTML(title, content, meta = {}) {
   const tagsHtml = meta.tags ? String(meta.tags).split(',').map(tag => `<span class="tag">${tag.trim()}</span>`).join('') : '';
   const formattedDate = meta.date ? new Date(meta.date).toISOString().split('T')[0] : '';
-  const dateHtml = formattedDate ? `<div class="post-meta">${formattedDate} ${tagsHtml}</div>` : '';
+  const dateHtml = formattedDate ? `<div class="post-meta">
+    <span class="meta-item">${CLOCK_ICON} ${formattedDate}</span>
+    ${tagsHtml ? `<span class="meta-item">${TAG_ICON} ${tagsHtml}</span>` : ''}
+  </div>` : '';
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -78,10 +84,13 @@ const postListHtml = posts
   .sort((a, b) => new Date(b.date) - new Date(a.date))
   .map(post => `
     <li class="post-item">
-      <a href="${post.url}">${post.title}</a>
-      <span class="post-date">${post.date}</span>
-      <div style="margin-top: 5px;">
-        ${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+      <a href="${post.url}" class="post-title">${post.title}</a>
+      <div class="post-meta">
+        <span class="meta-item">${CLOCK_ICON} ${post.date}</span>
+        <span class="meta-item">
+          ${TAG_ICON}
+          ${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+        </span>
       </div>
     </li>`)
   .join('');

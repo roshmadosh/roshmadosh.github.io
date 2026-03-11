@@ -50,17 +50,36 @@ h1, h2, h3 {
   color: var(--ctp-mocha-mauve);
 }
 
+.post-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
 .post-meta {
   color: var(--ctp-mocha-subtext0);
   font-size: 0.9em;
   margin-bottom: 20px;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.meta-item svg {
+  stroke: var(--ctp-mocha-overlay2);
 }
 
 .tag {
   background-color: var(--ctp-mocha-surface0);
   padding: 2px 8px;
   border-radius: 4px;
-  margin-right: 5px;
 }
 
 .post-list {

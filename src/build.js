@@ -13,6 +13,15 @@ const TAG_ICON = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 // Setup public directory
 fs.emptyDirSync(PUBLIC_DIR);
 fs.copySync(path.join(SRC_DIR, 'style.css'), path.join(PUBLIC_DIR, 'style.css'));
+if (fs.existsSync(path.join(SRC_DIR, 'raining-cats-and-dogs.jpg'))) {
+  fs.copySync(path.join(SRC_DIR, 'raining-cats-and-dogs.jpg'), path.join(PUBLIC_DIR, 'raining-cats-and-dogs.jpg'));
+}
+
+const RAINING_CATS_AND_DOGS_IMG = `
+    <!-- Imported from: docs/raining-cats-and-dogs.jpg -->
+    <img src="raining-cats-and-dogs.jpg" alt="Raining cats and dogs" style="width: 100%; height: auto; margin-bottom: 20px; border-radius: 8px;">
+    <!-- End of import from: docs/raining-cats-and-dogs.jpg -->
+`;
 
 const posts = [];
 
@@ -39,6 +48,7 @@ function generateHTML(title, content, meta = {}) {
             <a href="blog.html">Posts</a>
         </nav>
     </header>
+    ${RAINING_CATS_AND_DOGS_IMG}
     <main>
         <article>
             <h1>${title}</h1>
@@ -113,6 +123,7 @@ const blogHtml = `<!DOCTYPE html>
             <a href="blog.html">posts</a>
         </nav>
     </header>
+    ${RAINING_CATS_AND_DOGS_IMG}
     <main>
         <h2>Blog Posts</h2>
         <ul class="post-list">
@@ -140,6 +151,7 @@ const indexHtml = `<!DOCTYPE html>
             <a href="blog.html">posts</a>
         </nav>
     </header>
+    ${RAINING_CATS_AND_DOGS_IMG}
     <main>
         <section class="intro">
             <p>An ode to ye ol' personal blog site. No socials, just random crap I feel like writing about.</p>

@@ -48,7 +48,6 @@ function generateHTML(title, content, meta = {}) {
             <a href="blog.html">Posts</a>
         </nav>
     </header>
-    ${RAINING_CATS_AND_DOGS_IMG}
     <main>
         <article>
             <h1>${title}</h1>
@@ -123,7 +122,6 @@ const blogHtml = `<!DOCTYPE html>
             <a href="blog.html">posts</a>
         </nav>
     </header>
-    ${RAINING_CATS_AND_DOGS_IMG}
     <main>
         <h2>Blog Posts</h2>
         <ul class="post-list">

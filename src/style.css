@@ -76,3 +76,34 @@ h1, h2, h3 {
   color: var(--ctp-mocha-overlay2);
   margin-left: 10px;
 }
+
+.intro {
+  margin-bottom: 40px;
+  font-size: 1.1em;
+}
+
+.stuff-i-wrote-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 15px 20px;
+  margin-top: 20px;
+  border: 2px solid var(--ctp-mocha-mauve);
+  border-radius: 8px;
+  color: var(--ctp-mocha-mauve);
+  font-weight: bold;
+  font-size: 1.2em;
+  box-sizing: border-box;
+  transition: all 0.2s ease-in-out;
+}
+
+.stuff-i-wrote-btn:hover {
+  background-color: var(--ctp-mocha-mauve);
+  color: var(--ctp-mocha-base);
+  text-decoration: none;
+}
+
+.pencil-icon {
+  stroke: currentColor;
+}

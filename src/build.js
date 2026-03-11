@@ -73,7 +73,7 @@ files.forEach(file => {
   }
 });
 
-// Generate index page
+// Generate blog page
 const postListHtml = posts
   .sort((a, b) => new Date(b.date) - new Date(a.date))
   .map(post => `
@@ -86,6 +86,31 @@ const postListHtml = posts
     </li>`)
   .join('');
 
+const blogHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Hiroshi's Blog</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1><a href="index.html">Hiroshi's Blog</a></h1>
+        <p>This is where I write about stuff.</p>
+    </header>
+    <main>
+        <h2>Blog Posts</h2>
+        <ul class="post-list">
+            ${postListHtml}
+        </ul>
+    </main>
+</body>
+</html>`;
+
+fs.writeFileSync(path.join(PUBLIC_DIR, 'blog.html'), blogHtml);
+
+// Generate home page
 const indexHtml = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -97,12 +122,18 @@ const indexHtml = `<!DOCTYPE html>
 <body>
     <header>
         <h1>Hiroshi's Blog</h1>
-        <p>This is where I write about stuff.</p>
     </header>
     <main>
-        <ul class="post-list">
-            ${postListHtml}
-        </ul>
+        <section class="intro">
+            <p>Welcome to my personal corner of the web. I write about stuff I learned on random topics, but mostly related to CS and Turkish language. </p>
+        </section>
+        
+        <a href="blog.html" class="stuff-i-wrote-btn">
+            <span>Stuff I Wrote</span>
+            <svg class="pencil-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+            </svg>
+        </a>
     </main>
 </body>
 </html>`;

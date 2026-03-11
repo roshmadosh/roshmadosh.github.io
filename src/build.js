@@ -36,7 +36,7 @@ function generateHTML(title, content, meta = {}) {
     <header>
         <h1><a href="index.html">Hiroshi's Blog</a></h1>
         <nav>
-            <a href="blog.html">posts</a>
+            <a href="blog.html">Posts</a>
         </nav>
     </header>
     <main>
@@ -114,7 +114,6 @@ const blogHtml = `<!DOCTYPE html>
         </nav>
     </header>
     <main>
-        <p>This is where I write about stuff.</p>
         <h2>Blog Posts</h2>
         <ul class="post-list">
             ${postListHtml}
@@ -143,7 +142,7 @@ const indexHtml = `<!DOCTYPE html>
     </header>
     <main>
         <section class="intro">
-            <p>An ode to the ol' personal blog site. No socials, just random crap I feel like writing about.</p>
+            <p>An ode to ye ol' personal blog site. No socials, just random crap I feel like writing about.</p>
         </section>
         
         <a href="blog.html" class="stuff-i-wrote-btn">

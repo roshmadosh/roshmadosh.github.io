@@ -1,6 +1,6 @@
 ---
 title: Turkish's Verb "To Hate" Requires the Ablative (-den/dan) Case 
-date: 2026-03-12
+date: 2026-03-10
 tags: turkish, language
 ---
 ### _Nefret etmeyi neden istiyoruz._  

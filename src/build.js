@@ -12,10 +12,15 @@ const TAG_ICON = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 
 // Setup public directory
 fs.emptyDirSync(PUBLIC_DIR);
-fs.copySync(path.join(SRC_DIR, 'style.css'), path.join(PUBLIC_DIR, 'style.css'));
-if (fs.existsSync(path.join(SRC_DIR, 'raining-cats-and-dogs.jpg'))) {
-  fs.copySync(path.join(SRC_DIR, 'raining-cats-and-dogs.jpg'), path.join(PUBLIC_DIR, 'raining-cats-and-dogs.jpg'));
-}
+
+// Copy assets (images and css) from src to public
+const assetExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.css'];
+fs.copySync(SRC_DIR, PUBLIC_DIR, {
+  filter: (src) => {
+    if (fs.statSync(src).isDirectory()) return true;
+    return assetExtensions.includes(path.extname(src).toLowerCase());
+  }
+});
 
 const RAINING_CATS_AND_DOGS_IMG = `
     <!-- Imported from: docs/raining-cats-and-dogs.jpg -->
@@ -25,6 +30,9 @@ const RAINING_CATS_AND_DOGS_IMG = `
 
 marked.use({
   renderer: {
+    codespan({ text }) {
+      return `<code style="background-color: var(--ts-surface); color: var(--ts-highlight); padding: 2px 4px; border-radius: 4px; font-family: 'Space Grotesk', monospace;">${text}</code>`;
+    },
     image({ href, title, text }) {
       return `
         <a href="${href}" target="_blank">

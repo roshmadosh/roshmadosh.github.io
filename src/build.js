@@ -23,6 +23,17 @@ const RAINING_CATS_AND_DOGS_IMG = `
     <!-- End of import from: docs/raining-cats-and-dogs.jpg -->
 `;
 
+marked.use({
+  renderer: {
+    image({ href, title, text }) {
+      return `
+        <a href="${href}" target="_blank">
+          <img src="${href}" alt="${text}" title="${title || ''}" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 20px;">
+        </a>`;
+    }
+  }
+});
+
 const posts = [];
 
 function generateHTML(title, content, meta = {}) {

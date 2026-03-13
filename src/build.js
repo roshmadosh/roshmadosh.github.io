@@ -34,9 +34,12 @@ marked.use({
       return `<code style="background-color: var(--ts-surface); color: var(--ts-highlight); padding: 2px 4px; border-radius: 4px; font-family: 'Space Grotesk', monospace;">${text}</code>`;
     },
     image({ href, title, text }) {
+      const isPhoneShot = path.basename(href, path.extname(href)).endsWith('phoneshot');
+      const className = isPhoneShot ? ' class="phone-shot"' : '';
+      const style = isPhoneShot ? '' : ' style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 20px;"';
       return `
         <a href="${href}" target="_blank">
-          <img src="${href}" alt="${text}" title="${title || ''}" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 20px;">
+          <img src="${href}" alt="${text}" title="${title || ''}"${className}${style}>
         </a>`;
     }
   }

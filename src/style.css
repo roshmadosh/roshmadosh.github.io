@@ -46,6 +46,10 @@ header h1 {
   font-size: 1.8em;
 }
 
+header h1 a {
+  color: var(--ts-highlight);
+}
+
 header nav a {
   font-weight: bold;
   font-size: 1.1em;
@@ -93,7 +97,7 @@ header nav a {
 .post-item {
   margin-bottom: 20px;
   padding-bottom: 20px;
-  border-bottom: 1px dotted var(--ts-muted);
+  border-bottom: 2px dotted var(--ts-muted);
 }
 
 .post-item:last-child {

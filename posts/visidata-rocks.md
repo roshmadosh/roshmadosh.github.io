@@ -1,7 +1,7 @@
 ---
-title: Using VisiData as my Expense Tracking Tool
+title: Using VisiData as my expense-tracking tool
 date: 2026-03-12
-tags: personal-finance, keyboard-only
+tags: personal-finance, keyboard-only, tools
 ---  
 
 I've tried budget-tracking apps and spreadsheets but none of em lasted more than a couple weeks. [VisiData](https://github.com/saulpw/visidata) is the only tool that got me to stick to expense-tracking and it's been over a year now. Outside of meal-prep and programming, expense-tracking has been the most impactful skill/habit I picked up in adulthood. So ty VisiData!  

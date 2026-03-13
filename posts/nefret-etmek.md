@@ -1,5 +1,5 @@
 ---
-title: Turkish's Verb "To Hate" Requires the Ablative (-den/dan) Case 
+title: The Turkish verb meaning "to hate" requires the ablative (-den/dan) case 
 date: 2026-03-10
 tags: turkish, language
 ---

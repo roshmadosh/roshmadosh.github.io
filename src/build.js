@@ -45,7 +45,7 @@ marked.use({
 const posts = [];
 
 function generateHTML(title, content, meta = {}) {
-  const tagsHtml = meta.tags ? String(meta.tags).split(',').map(tag => `<span class="tag">${tag.trim()}</span>`).join('') : '';
+  const tagsHtml = meta.tags ? String(meta.tags).split(',').map(tag => `<a href="blog.html#${tag.trim()}" class="tag">${tag.trim()}</a>`).join('') : '';
   const formattedDate = meta.date ? new Date(meta.date).toISOString().split('T')[0] : '';
   const dateHtml = formattedDate ? `<div class="post-meta">
     <span class="meta-item">${CLOCK_ICON} ${formattedDate}</span>
@@ -114,13 +114,13 @@ files.forEach(file => {
 const postListHtml = posts
   .sort((a, b) => new Date(b.date) - new Date(a.date))
   .map(post => `
-    <li class="post-item">
+    <li class="post-item" data-tags="${post.tags.join(',')}">
       <a href="${post.url}" class="post-title">${post.title}</a>
       <div class="post-meta">
         <span class="meta-item">${CLOCK_ICON} ${post.date}</span>
         <span class="meta-item">
           ${TAG_ICON}
-          ${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+          ${post.tags.map(tag => `<a href="#${tag}" class="tag">${tag}</a>`).join('')}
         </span>
       </div>
     </li>`)
@@ -143,10 +143,63 @@ const blogHtml = `<!DOCTYPE html>
     </header>
     <main>
         <h2>Blog Posts</h2>
-        <ul class="post-list">
+        <ul class="post-list" id="post-list">
             ${postListHtml}
         </ul>
     </main>
+    <script>
+        const postItems = document.querySelectorAll('.post-item');
+
+        function filterByTag(tag) {
+            postItems.forEach(item => {
+                const tags = item.dataset.tags.split(',');
+                if (tags.includes(tag)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            document.querySelectorAll('.tag').forEach(t => {
+                if (t.textContent === tag) {
+                    t.classList.add('active');
+                } else {
+                    t.classList.remove('active');
+                }
+            });
+        }
+
+        function clearFilter() {
+            postItems.forEach(item => item.style.display = 'block');
+            document.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
+            if (window.location.hash) {
+                history.pushState("", document.title, window.location.pathname + window.location.search);
+            }
+        }
+
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('tag')) {
+                const tag = e.target.textContent;
+                const currentHash = decodeURIComponent(window.location.hash.slice(1));
+                if (tag === currentHash) {
+                    e.preventDefault();
+                    clearFilter();
+                }
+            }
+        });
+
+        const handleHash = () => {
+            const hash = decodeURIComponent(window.location.hash.slice(1));
+            if (hash) {
+                filterByTag(hash);
+            } else {
+                clearFilter();
+            }
+        };
+
+        window.addEventListener('load', handleHash);
+        window.addEventListener('hashchange', handleHash);
+    </script>
 </body>
 </html>`;
 

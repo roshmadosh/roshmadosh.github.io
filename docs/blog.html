@@ -15,29 +15,82 @@
     </header>
     <main>
         <h2>Blog Posts</h2>
-        <ul class="post-list">
+        <ul class="post-list" id="post-list">
             
-    <li class="post-item">
+    <li class="post-item" data-tags="personal-finance,keyboard-only,tools">
       <a href="visidata-rocks.html" class="post-title">Using VisiData as my expense-tracking tool</a>
       <div class="post-meta">
         <span class="meta-item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 2026-03-12</span>
         <span class="meta-item">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-          <span class="tag">personal-finance</span><span class="tag">keyboard-only</span><span class="tag">tools</span>
+          <a href="#personal-finance" class="tag">personal-finance</a><a href="#keyboard-only" class="tag">keyboard-only</a><a href="#tools" class="tag">tools</a>
         </span>
       </div>
     </li>
-    <li class="post-item">
+    <li class="post-item" data-tags="turkish,language">
       <a href="nefret-etmek.html" class="post-title">The Turkish verb meaning "to hate" requires the ablative (-den/dan) case</a>
       <div class="post-meta">
         <span class="meta-item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 2026-03-10</span>
         <span class="meta-item">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-          <span class="tag">turkish</span><span class="tag">language</span>
+          <a href="#turkish" class="tag">turkish</a><a href="#language" class="tag">language</a>
         </span>
       </div>
     </li>
         </ul>
     </main>
+    <script>
+        const postItems = document.querySelectorAll('.post-item');
+
+        function filterByTag(tag) {
+            postItems.forEach(item => {
+                const tags = item.dataset.tags.split(',');
+                if (tags.includes(tag)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            document.querySelectorAll('.tag').forEach(t => {
+                if (t.textContent === tag) {
+                    t.classList.add('active');
+                } else {
+                    t.classList.remove('active');
+                }
+            });
+        }
+
+        function clearFilter() {
+            postItems.forEach(item => item.style.display = 'block');
+            document.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
+            if (window.location.hash) {
+                history.pushState("", document.title, window.location.pathname + window.location.search);
+            }
+        }
+
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('tag')) {
+                const tag = e.target.textContent;
+                const currentHash = decodeURIComponent(window.location.hash.slice(1));
+                if (tag === currentHash) {
+                    e.preventDefault();
+                    clearFilter();
+                }
+            }
+        });
+
+        const handleHash = () => {
+            const hash = decodeURIComponent(window.location.hash.slice(1));
+            if (hash) {
+                filterByTag(hash);
+            } else {
+                clearFilter();
+            }
+        };
+
+        window.addEventListener('load', handleHash);
+        window.addEventListener('hashchange', handleHash);
+    </script>
 </body>
 </html>

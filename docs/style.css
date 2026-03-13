@@ -87,6 +87,20 @@ header nav a {
   color: var(--ts-text);
   padding: 2px 8px;
   border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  text-decoration: none;
+}
+
+.tag:hover {
+  background-color: var(--ts-highlight);
+  color: white;
+  text-decoration: none;
+}
+
+.tag.active {
+  background-color: var(--ts-accent);
+  color: var(--ts-bg);
 }
 
 .post-list {

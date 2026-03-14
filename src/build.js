@@ -47,6 +47,20 @@ marked.use({
 
 const posts = [];
 
+function getPreview(markdown, length = 140) {
+  // Remove markdown headers, images, and links
+  let text = markdown
+    .replace(/^#+.*$/gm, '') // Headers
+    .replace(/!\[.*?\]\(.*?\)/g, '') // Images
+    .replace(/\[(.*?)\]\(.*?\)/g, '$1') // Links (keep text)
+    .replace(/[*_~`]/g, '') // Simple formatting
+    .replace(/\s+/g, ' ') // Whitespace normalization
+    .trim();
+  
+  if (text.length <= length) return text;
+  return text.substring(0, length).trim() + '...';
+}
+
 function generateHTML(title, content, meta = {}) {
   const tagsHtml = meta.tags ? String(meta.tags).split(',').map(tag => `<a href="blog.html#${tag.trim()}" class="tag">${tag.trim()}</a>`).join('') : '';
   const formattedDate = meta.date ? new Date(meta.date).toISOString().split('T')[0] : '';
@@ -108,7 +122,8 @@ files.forEach(file => {
       title: meta.title || file,
       date: meta.date ? new Date(meta.date).toISOString().split('T')[0] : 'No date',
       url: outputFileName,
-      tags: meta.tags ? String(meta.tags).split(',').map(t => t.trim()) : []
+      tags: meta.tags ? String(meta.tags).split(',').map(t => t.trim()) : [],
+      preview: getPreview(markdown)
     });
   }
 });
@@ -126,6 +141,7 @@ const postListHtml = posts
           ${post.tags.map(tag => `<a href="#${tag}" class="tag">${tag}</a>`).join('')}
         </span>
       </div>
+      <p class="post-preview">${post.preview}</p>
     </li>`)
   .join('');
 

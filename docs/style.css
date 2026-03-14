@@ -66,10 +66,18 @@ header nav a {
 .post-meta {
   color: var(--ts-muted);
   font-size: 0.9em;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   display: flex;
   gap: 15px;
   align-items: center;
+}
+
+.post-preview {
+  margin: 0;
+  color: var(--ts-text);
+  opacity: 0.85;
+  font-size: 0.95em;
+  line-height: 1.5;
 }
 
 .meta-item {

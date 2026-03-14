@@ -3,9 +3,7 @@ title: Meal-prep planning with AnyList
 date: 2026-03-13
 tags: meal-prep, tools
 ---
-[AnyList](https://www.anylist.com/) is sick.  
-
-I use it for both logging recipes for my weekly meal-prep rotation and as a grocery shopping list. I pay $10.80 per _year_ to use the app because it's so gd convenient.  
+[AnyList](https://www.anylist.com/) is sick. I use it for both logging recipes for my weekly meal-prep rotation and as a grocery shopping list. I pay $10.80 per _year_ to use the app because it's so gd convenient.  
 
 ![recipes](./anylist_recipes_phoneshot.jpg)
 
@@ -13,9 +11,7 @@ Their browser extension is my fave feature. It can read a recipe post and extrac
 
 ![jack and maggie's banana bread](./jakeandmaggiesbbread.png)
 
-When shopping for the ingredients, you just go to the recipe and select all the ingredients you don't currently have to add it to your shopping list.  
-
-The shopping list not only includes the ingredients but the recipe each one is used for. As you're shopping you tap on the ingredients to cross them off.  
+When shopping for the ingredients, you just go to the recipe and select all the ingredients you don't currently have to add it to your shopping list. The shopping list not only includes the ingredients but the recipe each one is used for. As you're shopping you tap on the ingredients to cross them off.  
 
 ![grocery list](./anylist_shopping_phoneshot.jpg)
 

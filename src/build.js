@@ -11,7 +11,15 @@ const CLOCK_ICON = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="1
 const TAG_ICON = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>`;
 
 // Setup public directory
-fs.emptyDirSync(PUBLIC_DIR);
+if (fs.existsSync(PUBLIC_DIR)) {
+  fs.readdirSync(PUBLIC_DIR).forEach(file => {
+    if (file !== 'CNAME') {
+      fs.removeSync(path.join(PUBLIC_DIR, file));
+    }
+  });
+} else {
+  fs.ensureDirSync(PUBLIC_DIR);
+}
 
 // Copy assets (images and css) from src to public
 const assetExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.css'];
@@ -62,7 +70,7 @@ function getPreview(markdown, length = 140) {
 }
 
 function generateHTML(title, content, meta = {}) {
-  const tagsHtml = meta.tags ? String(meta.tags).split(',').map(tag => `<a href="main.html#${tag.trim()}" class="tag">${tag.trim()}</a>`).join('') : '';
+  const tagsHtml = meta.tags ? String(meta.tags).split(',').map(tag => `<a href="posts.html#${tag.trim()}" class="tag">${tag.trim()}</a>`).join('') : '';
   const formattedDate = meta.date ? new Date(meta.date).toISOString().split('T')[0] : '';
   const dateHtml = formattedDate ? `<div class="post-meta">
     <span class="meta-item">${CLOCK_ICON} ${formattedDate}</span>
@@ -81,7 +89,7 @@ function generateHTML(title, content, meta = {}) {
     <header>
         <h1><a href="index.html">Hiroshi's Blog</a></h1>
         <nav>
-            <a href="main.html">Posts</a>
+            <a href="posts.html">Posts</a>
         </nav>
     </header>
     <main>
@@ -157,7 +165,7 @@ const blogHtml = `<!DOCTYPE html>
     <header>
         <h1><a href="index.html">Hiroshi's Blog</a></h1>
         <nav>
-            <a href="main.html">posts</a>
+            <a href="posts.html">posts</a>
         </nav>
     </header>
     <main>
@@ -222,7 +230,7 @@ const blogHtml = `<!DOCTYPE html>
 </body>
 </html>`;
 
-fs.writeFileSync(path.join(PUBLIC_DIR, 'main.html'), blogHtml);
+fs.writeFileSync(path.join(PUBLIC_DIR, 'posts.html'), blogHtml);
 
 // Generate home page
 const indexHtml = `<!DOCTYPE html>
@@ -237,7 +245,7 @@ const indexHtml = `<!DOCTYPE html>
     <header>
         <h1><a href="index.html">Hiroshi's Blog</a></h1>
         <nav>
-            <a href="main.html">posts</a>
+            <a href="posts.html">posts</a>
         </nav>
     </header>
     <main>
@@ -248,7 +256,7 @@ const indexHtml = `<!DOCTYPE html>
 	<section class="content" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2em;">
 	    ${RAINING_CATS_AND_DOGS_IMG}
 	    <div class="actions">
-		<a href="main.html" class="stuff-i-wrote-btn">
+		<a href="posts.html" class="stuff-i-wrote-btn">
 		    <span>Stuff I Wrote</span>
 		    <svg class="pencil-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 			<path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>

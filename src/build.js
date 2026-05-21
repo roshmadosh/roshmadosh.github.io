@@ -62,7 +62,7 @@ function getPreview(markdown, length = 140) {
 }
 
 function generateHTML(title, content, meta = {}) {
-  const tagsHtml = meta.tags ? String(meta.tags).split(',').map(tag => `<a href="blog.html#${tag.trim()}" class="tag">${tag.trim()}</a>`).join('') : '';
+  const tagsHtml = meta.tags ? String(meta.tags).split(',').map(tag => `<a href="main.html#${tag.trim()}" class="tag">${tag.trim()}</a>`).join('') : '';
   const formattedDate = meta.date ? new Date(meta.date).toISOString().split('T')[0] : '';
   const dateHtml = formattedDate ? `<div class="post-meta">
     <span class="meta-item">${CLOCK_ICON} ${formattedDate}</span>
@@ -81,7 +81,7 @@ function generateHTML(title, content, meta = {}) {
     <header>
         <h1><a href="index.html">Hiroshi's Blog</a></h1>
         <nav>
-            <a href="blog.html">Posts</a>
+            <a href="main.html">Posts</a>
         </nav>
     </header>
     <main>
@@ -157,7 +157,7 @@ const blogHtml = `<!DOCTYPE html>
     <header>
         <h1><a href="index.html">Hiroshi's Blog</a></h1>
         <nav>
-            <a href="blog.html">posts</a>
+            <a href="main.html">posts</a>
         </nav>
     </header>
     <main>
@@ -222,7 +222,7 @@ const blogHtml = `<!DOCTYPE html>
 </body>
 </html>`;
 
-fs.writeFileSync(path.join(PUBLIC_DIR, 'blog.html'), blogHtml);
+fs.writeFileSync(path.join(PUBLIC_DIR, 'main.html'), blogHtml);
 
 // Generate home page
 const indexHtml = `<!DOCTYPE html>
@@ -237,7 +237,7 @@ const indexHtml = `<!DOCTYPE html>
     <header>
         <h1><a href="index.html">Hiroshi's Blog</a></h1>
         <nav>
-            <a href="blog.html">posts</a>
+            <a href="main.html">posts</a>
         </nav>
     </header>
     <main>
@@ -248,7 +248,7 @@ const indexHtml = `<!DOCTYPE html>
 	<section class="content" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2em;">
 	    ${RAINING_CATS_AND_DOGS_IMG}
 	    <div class="actions">
-		<a href="blog.html" class="stuff-i-wrote-btn">
+		<a href="main.html" class="stuff-i-wrote-btn">
 		    <span>Stuff I Wrote</span>
 		    <svg class="pencil-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 			<path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
